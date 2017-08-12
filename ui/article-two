@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Article Two</title>
+    </head>
+    <body>
+        <div>
+            <a href="/">Home</a>|<a href="/article-one">One</a>
+        </div>
+        <hr />
+        <div>
+            <h1>Article Two</h1>
+        </div>
+        <div>
+            <p>
+                This is the Article two content. This is the Article two content.  This is the Article two content.  This is the Article two content.  This is the Article two content.  This is the Article two content. 
+            </p>
+            <p>
+                This is the Article two content. This is the Article two content.  This is the Article two content.  This is the Article two content.  This is the Article two content.  This is the Article two content. 
+            </p>
+        </div>
+    </body>
+</html>
