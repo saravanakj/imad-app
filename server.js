@@ -5,17 +5,37 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne = {
-    title: 'Article One',
-    heading: 'Article One',
-    content: `
-                <p>
-                    This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.
-                </p>
-                <p>
-                    This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.
-                </p>
-    `
+var articles = {
+    articleOne: {
+                    title: 'Article One',
+                    heading: 'Article One',
+                    content: `
+                                <p>
+                                    This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.
+                                </p>
+                                <p>
+                                    This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.This is the Article one content. This is the Article one content.
+                                </p>
+                    `
+    },
+    articleTwo: {
+                    title: 'Article Two',
+                    heading: 'Article Two',
+                    content: `
+                        <p>
+                            This is the second Article 
+                        </p>
+                    `
+    },
+    articleThree: {
+                    title: 'Article Three',
+                    heading: 'Article Three',
+                    content: `
+                        <p>
+                            This is the third Article 
+                        </p>
+                    `
+    }
 };
 
 var createTemplate = function(data){
@@ -50,15 +70,15 @@ app.get('/', function (req, res) {
 });
 
 app.get('/article-one', function (req, res) {
-  res.send(createTemplate(articleOne));
+  res.send(createTemplate(articles.articleOne));
 });
 
 app.get('/article-two', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
+  res.send(createTemplate(articles.articleTwo));
 });
 
 app.get('/article-three', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
+  res.send(createTemplate(articles.articleThree));
 });
 
 app.get('/ui/style.css', function (req, res) {
