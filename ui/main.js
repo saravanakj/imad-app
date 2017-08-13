@@ -24,6 +24,7 @@ button.onclick = function(){
     //span.innerHTML = counter.toString();
     
     var request = new XMLHttpRequest();
+    
     request.onreadystatechange = function(){
       if(request.readyState === XMLHttpRequest.DONE){
           if(request.state === 200){
@@ -33,4 +34,7 @@ button.onclick = function(){
           }
       }  
     };
+    
+    request.open('GET', 'http://saravanakj.imad.hasura-app.io/counter', true);
+    request.send(null);
 };
