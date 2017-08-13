@@ -15,11 +15,22 @@ img.onclick = function(){
     setInterval(moveRight, 50);
 };
 
-var counter = 0;
+//var counter = 0;
 
 var button = document.getElementById('clickme');
 button.onclick = function(){
-    counter = counter + 1;
-    var span = document.getElementById('counter-txt');
-    span.innerHTML = counter.toString();
+    //counter = counter + 1;
+    //var span = document.getElementById('counter-txt');
+    //span.innerHTML = counter.toString();
+    
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function(){
+      if(request.readyState === XMLHttpRequest.DONE){
+          if(request.state === 200){
+                var counter = request.responseText;
+                var span = document.getElementById('counter-txt');
+                span.innerHTML = counter;
+          }
+      }  
+    };
 };
