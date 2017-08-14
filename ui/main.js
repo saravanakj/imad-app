@@ -50,6 +50,7 @@ submitBtn.onclick = function(){
     request.onreadystatechange = function(){
       if(request.readyState === XMLHttpRequest.DONE){
           if(request.status === 200){
+                var names = JSON.parse(request.responseText);
                 for(var ind=0; ind < names.length; ind++) {
                     nl += '<li>'+names[ind] + '</li>';
                 }
@@ -58,7 +59,7 @@ submitBtn.onclick = function(){
       }  
     };
     
-    request.open('GET', 'http://saravanakj.imad.hasura-app.io/subname='+document.getElementById('namelist').text, true);
+    request.open('GET', 'http://saravanakj.imad.hasura-app.io/subname='+document.getElementById('nameTxt').text, true);
     request.send(null);
     
     
