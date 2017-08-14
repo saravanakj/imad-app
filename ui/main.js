@@ -51,6 +51,7 @@ submitBtn.onclick = function(){
       if(request.readyState === XMLHttpRequest.DONE){
           if(request.status === 200){
                 var names = JSON.parse(request.responseText);
+                var nl = '';
                 for(var ind=0; ind < names.length; ind++) {
                     nl += '<li>'+names[ind] + '</li>';
                 }
