@@ -60,7 +60,7 @@ submitBtn.onclick = function(){
       }  
     };
     
-    request.open('GET', 'http://saravanakj.imad.hasura-app.io/subname?name='+document.getElementById('nameTxt').text, true);
+    request.open('GET', 'http://saravanakj.imad.hasura-app.io/subname?name='+document.getElementById('nameTxt').value, true);
     request.send(null);
     
     
