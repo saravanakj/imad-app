@@ -42,10 +42,24 @@ button.onclick = function(){
 var submitBtn = document.getElementById('submit-btn');
 submitBtn.onclick = function(){
     var ul = document.getElementById('namelist');
-    var nl = '';
-    var names = ['name1', 'name2'];
-    for(var ind=0; ind < names.length; ind++) {
-        nl += '<li>'+names[ind] + '</li>';
-    }
-    ul.innerHTML = nl;
+    //var nl = '';
+    //var names = ['name1', 'name2'];
+    
+    var request = new XMLHttpRequest();
+    
+    request.onreadystatechange = function(){
+      if(request.readyState === XMLHttpRequest.DONE){
+          if(request.status === 200){
+                for(var ind=0; ind < names.length; ind++) {
+                    nl += '<li>'+names[ind] + '</li>';
+                }
+                ul.innerHTML = nl;
+          }
+      }  
+    };
+    
+    request.open('GET', 'http://saravanakj.imad.hasura-app.io/subname='+document.getElementById('namelist').text, true);
+    request.send(null);
+    
+    
 };
