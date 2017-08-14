@@ -45,7 +45,7 @@ submitBtn.onclick = function(){
     var nl = '';
     var names = ['name1', 'name2'];
     for(var ind=0; ind < names.length; ind++) {
-        nl += `<li>${names[ind]}</li>`;
+        nl += '<li>'+names[ind] + '</li>';
     }
     ul.innerHTML = nl;
 };
