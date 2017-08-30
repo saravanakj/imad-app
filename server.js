@@ -105,7 +105,7 @@ var hashedValue = function(password, salt) {
 }
 
 app.get('/hash/:input', function(req, res) {
-   res.send(hashedValue(req.params.input));
+   res.send(hashedValue(req.params.input, 'sample salt'));
 });
 
 var names=[];
