@@ -2,6 +2,8 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var Pool = require('pg').Pool;
+var crypto = require('crypto');
+
 var config = {
     user: 'saravanakj',
     database: 'saravanakj',
@@ -97,6 +99,14 @@ app.get('/counter', function (req, res) {
   res.send(counter.toString());
 });
 
+var hashedValue = function(password, salt) {
+    var hashed = crypto.pbkdf2Sync(password, salt, 10000, 512, 'sha512');
+    return hashed.toString('hex');
+}
+
+app.get('/hash/:input', function(req, res) {
+   res.send(hashedValue(req.params.input));
+});
 
 var names=[];
 app.get('/subname', function(req, res){
