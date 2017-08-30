@@ -56,7 +56,7 @@ var createTemplate = function(data){
         <body>
             <div class="container">
                 <div>
-                    <a href="/">Home</a>|<a href="/article-one">One</a>|<a href="/article-two">Two</a>|<a href="/article-three">Three</a>
+                    <a href="/">Home</a>|<a href="articles/article-one">One</a>|<a href="articles/article-two">Two</a>|<a href="articles/article-three">Three</a>
                 </div>
                 <hr />
                 <div>
