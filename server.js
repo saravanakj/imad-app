@@ -75,7 +75,7 @@ var createTemplate = function(data){
 
 var pool = new Pool(config);
 app.get('/test-db', function(req, res) {
-    pool.query('select * from user', function(err, result){
+    pool.query('select * from "user"', function(err, result){
        if(err){
            res.status(500).send(err.toString());
        } else {
