@@ -74,7 +74,7 @@ var createTemplate = function(data){
     `;
     return template;
     
-}
+};
 
 var pool = new Pool(config);
 app.get('/test-db', function(req, res) {
