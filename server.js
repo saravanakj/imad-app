@@ -75,7 +75,7 @@ var createTemplate = function(data){
 
 var pool = new Pool(config);
 app.get('/test-db', function(req, res) {
-    pool.query('select * from "user"', function(err, result){
+    pool.query('SELECT * from "user"', function(err, result){
        if(err){
            res.status(500).send(err.toString());
        } else {
@@ -105,7 +105,15 @@ app.get('/subname', function(req, res){
 
 app.get('/:articleName', function (req, res) {
   var articleName = req.params.articleName;
-  res.send(createTemplate(articles[articleName]));
+  //res.send(createTemplate(articles[articleName]));
+  
+  pool.query('SELECT * FROM article WHERE title = ' + articleName, function(err, result){
+       if(err){
+           res.status(500).send(err.toString());
+       } else {
+           res.send(createTemplate(result.rows[0]));
+       }
+  });
 });
 
 /*
