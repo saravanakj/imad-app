@@ -101,7 +101,7 @@ app.get('/counter', function (req, res) {
 
 var hashedValue = function(password, salt) {
     var hashed = crypto.pbkdf2Sync(password, salt, 10000, 512, 'sha512');
-    return hashed.toString('hex');
+    return ['pbkdf2',salt,10000,hashed.toString('hex')].join('$');
 }
 
 app.get('/hash/:input', function(req, res) {
