@@ -172,10 +172,10 @@ app.post('/login', function(req, res) {
                if(hashedPassword === dbPassword) {
                    res.send('User successfully logged in!');
                } else {
-                   res.status(403).send('Invalid credentials');
+                   res.status(403).send('Invalid credentials - user/password');
                }
            } else {
-               res.status(403).send('Invalid credentials');
+               res.status(403).send('Invalid credentials - user');
            }
        }
   });
