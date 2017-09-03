@@ -140,7 +140,13 @@ app.post('/create_user', function(req, res) {
     var email = req.body.email || `${userName}@test.com`;
     var password = req.body.password;
     
-    pool.query('INSERT into "user" (username, name, email, password) values($1, $1, $2, $3)', [userName, email, password], function(err, result){
+    var salt = crypto.getRandomBytes(128).toString('hex');
+    var hashedPassword = hash(password, salt);
+    
+    pool.query(`INSERT into "user" (username, name, email, password) 
+                values($1, $1, $2, $3)`, 
+                   [userName, email, hashedPassword],
+                   function(err, result){
        if(err){
            res.status(500).send(err.toString());
        } else {
