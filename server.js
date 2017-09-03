@@ -4,6 +4,7 @@ var path = require('path');
 var Pool = require('pg').Pool;
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var config = {
     user: 'saravanakj',
@@ -16,6 +17,10 @@ var config = {
 var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());
+app.use(session({
+    secret: 'here is the secret session key',
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
+}));
 
 var articles = {
     'article-one': {
@@ -159,7 +164,7 @@ app.post('/login', function(req, res) {
     var userName = req.body.userName;
     var password = req.body.password;
     
-    pool.query(`SELECT username, password FROM "user" WHERE username= $1`, [userName],
+    pool.query(`SELECT id, username, password FROM "user" WHERE username= $1`, [userName],
                 function(err, result){
        if(err){
            res.status(500).send(err.toString());
@@ -170,6 +175,8 @@ app.post('/login', function(req, res) {
                
                var hashedPassword = hash(password, salt);
                if(hashedPassword === dbPassword) {
+                   req.session.auth = { userId: result.rows[0].id, username: result.rows[0].username };
+                   
                    res.send('User logged in successfully!');
                } else {
                    res.status(403).send('Invalid credentials - user/password');
@@ -179,6 +186,15 @@ app.post('/login', function(req, res) {
            }
        }
   });
+});
+
+app.get('/check-session', function(req, res){
+   if(req.session && req.session.auth){
+       res.send('You are logged in as ' + req.session.auth.username);
+   } else {
+       res.send('You are not logged in..');
+   } 
+   
 });
 
 /*
