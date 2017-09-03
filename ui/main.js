@@ -79,10 +79,10 @@ loginBtn.onclick = function(){
     };
     
     request.open('POST', 'http://saravanakj.imad.hasura-app.io/login', true);
-    request.send({
+    request.send(JSON.stringify({
         "userName": document.getElementById('userTxt'),
         "password": document.getElementById('pwdTxt')
-    });
+    }));
     
     
 };
