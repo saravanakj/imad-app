@@ -137,9 +137,10 @@ app.get('/articles/:articleName', function (req, res) {
 
 app.post('/create_user', function(req, res) {
     var userName = req.body.userName;
+    var email = req.body.email || `#{userName}@test.com`;
     var password = req.body.password;
     
-    pool.query('INSERT into "user" values($1, $2)', [userName, password], function(err, result){
+    pool.query('INSERT into "user" (username, name, email, password) values($1, $1, $2, $3)', [userName, email, password], function(err, result){
        if(err){
            res.status(500).send(err.toString());
        } else {
