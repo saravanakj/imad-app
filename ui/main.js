@@ -80,8 +80,8 @@ loginBtn.onclick = function(){
     
     request.open('POST', 'http://saravanakj.imad.hasura-app.io/login', true);
     request.send(JSON.stringify({
-        "userName": document.getElementById('userTxt'),
-        "password": document.getElementById('pwdTxt')
+        "userName": document.getElementById('userTxt').value,
+        "password": document.getElementById('pwdTxt').value
     }));
     
     
