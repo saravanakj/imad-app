@@ -78,7 +78,7 @@ loginBtn.onclick = function(){
       }  
     };
     
-    request.open('POST', 'http://saravanakj.imad.hasura-app.io/login, true);
+    request.open('POST', 'http://saravanakj.imad.hasura-app.io/login', true);
     request.send({
         "userName": document.getElementById('userTxt'),
         "password": document.getElementById('pwdTxt')
