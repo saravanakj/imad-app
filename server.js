@@ -170,7 +170,7 @@ app.post('/login', function(req, res) {
                
                var hashedPassword = hash(password, salt);
                if(hashedPassword === dbPassword) {
-                   res.send('User successfully logged in!');
+                   res.send('User logged in successfully!');
                } else {
                    res.status(403).send('Invalid credentials - user/password');
                }
