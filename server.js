@@ -197,6 +197,15 @@ app.get('/check-session', function(req, res){
    
 });
 
+app.get('/logout', function(req, res) {
+   if(req.session && req.session.auth){
+        delete req.session.auth;
+        res.send('logged out');
+   } else {
+        res.send('You are not logged in..');
+   }
+});
+
 /*
 app.get('/article-one', function (req, res) {
   res.send(createTemplate(articles.articleOne));
